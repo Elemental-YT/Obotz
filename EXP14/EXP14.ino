@@ -13,7 +13,7 @@ int main(void)
       PORTC = 0b00000010;
       _delay_ms(500);
     }
-    if(checkbit(PIND,bitn(3))
+    if(checkbit(PIND,bitn(3)))
     {
       PORTC = 0b00000001;
       _delay_ms(500);

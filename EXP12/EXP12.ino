@@ -2,7 +2,7 @@
 #include<util/delay.h>
 #define checkbit(x,y) ((x) & (y))
 #define bitn(p) (0x01 << (p))
-int main (void);
+int main (void)
 {
   DDRB = 0xFF;
   DDRD = 0x00;
@@ -18,11 +18,11 @@ int main (void);
     {
       PORTB = 0xFF ;
     }
-    if ( count == 1 )
+    if ( count == 2 )
     {
-      PORTB = 0x00 ; 
+      PORTB = 0x00 ;
     }
-    if ( count == 1 )
+    if ( count == 3 )
     {
       count = 1 ;
     }

@@ -16,7 +16,7 @@ int main(void)
     setbit(PORTD,bitn(1));
     _delay_ms(1000);
     clearbit(PORTD,bitn(1));
-    setbit(PORTB,bitn(0));
+    setbit(PORTB,bitn(4));
     _delay_ms(1000);
     clearbit(PORTB,bitn(4));
   }

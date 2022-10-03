@@ -1,8 +1,8 @@
 #include<avr/io.h>
 #include<util/delay.h>
-int main (void);
+int main (void)
 {
-  DDRD = 0xFB
+  DDRD = 0xFB;
   while(1)
   {
     if(PIND & 0x02)
