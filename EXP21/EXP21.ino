@@ -5,30 +5,30 @@
 
 int main(void)
 {
-  Serial.being (2000000);
+  Serial.begin (2000000);
   int xval, yval, zval;
     
     while(1)
     {
        ADMUX = 0x45;
        ADCSRA = 0xc7;
-       while (checkbit(ADCSRA, bitn(ADsC))));
+       while (checkbit(ADCSRA, bitn(ADSC)));
        xval =ADCW;
-       Serial.print("X-axis ");
-       Serial.print(xval);
+       Serial.println("X-axis ");
+       Serial.println(xval);
        
        ADMUX = 0x46;
        ADCSRA = 0xc7;
-       while(checkbit(ADCSRA, butn(ADSC)));
+       while(checkbit(ADCSRA, bitn(ADSC)));
        yval = ADCW;
-       Serial.print(" Y-axis ");
-       Serial.print(yval);
+       Serial.println(" Y-axis ");
+       Serial.println(yval);
        
        ADMUX = 0x47;
        ADCSRA = 0xc7;
        while(checkbit(ADCSRA, bitn(ADSC)));
        zval = ADCW;
-       Serial.print(" Z-axis ");
+       Serial.println(" Z-axis ");
        Serial.println(zval);
        
        _delay_ms(1000);

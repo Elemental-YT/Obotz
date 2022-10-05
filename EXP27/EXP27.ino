@@ -7,7 +7,7 @@
 int main(void)
 {
   LCD lcd;
-  lcd.int();
+  lcd.init();
   DDRD = 0x00;
   int var = 0;
   while(1)

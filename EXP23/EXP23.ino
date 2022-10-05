@@ -9,6 +9,7 @@ int main(void)
   DDRB = 0xFF;
   DDRD = 0x00;
   OCR0 = 0;
+
   while(1)
   {
     if(checkbit(PIND, bitn(2)))

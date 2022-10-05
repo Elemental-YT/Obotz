@@ -7,11 +7,11 @@
 int main(void)
 {
   LCD lcd;
-  lcd.int();
+  lcd.init();
 
   while(1)
   {
-    for(int i =0; i<16; i+)
+    for(int i =0; i<16; i++)
     {
       lcd.cmd(0x01);
       lcd.line1(i);

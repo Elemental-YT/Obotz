@@ -7,6 +7,6 @@
 int main(void)
 {
   LCD lcd;
-  lcd.int();
+  lcd.init();
   lcd.string("Hello");
 }

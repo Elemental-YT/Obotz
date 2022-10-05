@@ -11,7 +11,7 @@ int main(void)
   UCSRB = 0x06;
   UBRRH = 0x00;
   UBRRL = 103;
-  TCCRo = 0x6B;
+  TCCR0 = 0x6B;
 
   while(1)
   {
@@ -23,7 +23,7 @@ int main(void)
     }
     if(data == '0')
     {
-      OCR0 = OCR0 - 20
+      OCR0 = OCR0 - 20;
     }
   }
 }

@@ -7,13 +7,13 @@
 int main(void)
 {
   LCD lcd;
-  lcd.int();
+  lcd.init();
   Serial.begin(2000000);
   while(1)
   {
     ADMUX = 0x40;
     ADCSRA = 0xC7;
-    while(checkbit(ADCSRA, bitn(ADSC))));
+    while(checkbit(ADCSRA, bitn(ADSC)));
     Serial.println(ADCW);
     lcd.cmd(0x01);
     lcd.showvalue(ADCW);
