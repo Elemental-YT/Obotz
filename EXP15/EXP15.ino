@@ -9,7 +9,7 @@ int main (void)
   while(1)
   {
     if((checkbit (PIND,bitn(2)))&&
-    (checkbit (PIND,bitn(3)))
+    (checkbit (PIND,bitn(3))))
     {
       PORTB = 0xFF;
       _delay_ms(500);

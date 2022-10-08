@@ -20,7 +20,8 @@ int main(void)
       PORTD = 0xFF;
       PORTB = 0x00;
     }
-    if(xval < 320){
+    if(xval < 320)
+    {
       PORTD = 0x00;
       PORTB = 0xFF;
     }

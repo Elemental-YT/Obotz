@@ -14,7 +14,7 @@ int main (void)
     while(checkbit(ADCSRA, bitn(ADSC)));
     val = ADCW;
 
-    if (val<500)
+    if (val<100)
     {
       PORTB = 0xFF;
       PORTC = 0x00;
@@ -25,3 +25,4 @@ int main (void)
       PORTC = 0xFF;
     }
   }
+}

@@ -21,7 +21,7 @@ int main (void)
     _delay_ms(10);
     left = ADCW;
     
-    if (right<500)
+    if (right<100)
     {
       PORTB = 0xFF;
       
@@ -32,7 +32,7 @@ int main (void)
      
     }
 
-    if (left<500)
+    if (left<100)
     {
       PORTC = 0xFF;
       
@@ -42,5 +42,5 @@ int main (void)
       PORTC = 0x00;
      
     }
-    
+  }
   }
