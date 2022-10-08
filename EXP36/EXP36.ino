@@ -1,5 +1,7 @@
 #include<avr/io.h>
 #include<util/delay.h>
+#define checkbit(x,y) ((x) & (y))
+#define bitn(p) (0x01 << (p))
 int var = 0;
 int angle = 0;
 int main(void)
@@ -11,12 +13,12 @@ int main(void)
     if(checkbit(PIND,bitn(2)))
     {
       _delay_ms(300);
-      angle = angle + 10
+      angle = angle + 10;
     }
-    if(checkbit(PIND,bitn(2)))
+    if(checkbit(PIND,bitn(3)))
     {
       _delay_ms(300);
-      angle = angle - 10
+      angle = angle - 10;
     }
   }
 }
@@ -33,7 +35,7 @@ void servo()
       {
         if(TCNT0 == 25)
         {
-          var++
+          var++;
           TCNT0 = 0;
         }
         if (var == tem )  
@@ -43,7 +45,7 @@ void servo()
       }
       if ( var == 200)
       {
-        PORTB = 0xFF
+        PORTB = 0xFF;
         var = 0;
       }
     }

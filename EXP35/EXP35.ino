@@ -33,7 +33,7 @@ void servo()
     {
       if(TCNT0 == 25)
       {
-        var++
+        var++;
         TCNT0 = 0;
       }
       if (var == tem )
@@ -43,7 +43,7 @@ void servo()
     }
     if ( var == 200)
     {
-      PORTB = 0xFF
+      PORTB = 0xFF;
       var = 0;
     }
   }
