@@ -13,5 +13,6 @@ int main (void)
     while(checkbit(ADCSRA, bitn(ADSC)));
     val = ADCW;
     Serial.println(val);
+    _delay_ms(500);
   }
 }

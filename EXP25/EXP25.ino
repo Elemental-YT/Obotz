@@ -18,7 +18,6 @@ int main(void)
       lcd.string("Hello");
       lcd.line2(3);
       lcd.string("World");
-
       _delay_ms(500);
     }
   }

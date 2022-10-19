@@ -3,7 +3,7 @@
 #define checkbit(x,y) ((x) &(y))
 #define bitn(p) (0x01 << (p))
 #include <LCD.h>
-
+int wewo;
 int main(void)
 {
   LCD lcd;
@@ -15,9 +15,13 @@ int main(void)
     ADCSRA = 0xC7;
     while(checkbit(ADCSRA, bitn(ADSC)));
     Serial.println(ADCW);
-    lcd.cmd(0x01);
-    lcd.showvalue(ADCW);
+    wewo = ADCW;
     _delay_ms(500);
-
+    if(wewo >310)
+    {
+      lcd.cmd(0x01);
+      lcd.string("Alert!");
+    }
+    
   }
 }

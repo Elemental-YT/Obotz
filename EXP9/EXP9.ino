@@ -5,7 +5,7 @@ int main (void)
   DDRD = 0xFB;
   while(1)
   {
-    if(PIND & 0x02)
+    if(PIND & 0x04)
     {
       PORTD = 0x01;
       _delay_ms(200);

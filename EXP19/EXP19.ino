@@ -5,7 +5,7 @@
 int main (void)
 {
   int right;
-  int left;
+  int left; 
   DDRB = 0xFF;
   DDRC = 0xFF;
   while(1)
@@ -42,5 +42,7 @@ int main (void)
       PORTC = 0x00;
      
     }
+    
    } 
+   
   }

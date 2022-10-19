@@ -1,7 +1,7 @@
 #include<avr/io.h>
 #include<util/delay.h>
-#define checkbit(x,y) ((x) & (y))
-#define bitn(p) (0x01 << (p))
+#define checkbit(x,y)((x)&(y))
+#define bitn(p)(0x01<<(p))
 int main(void)
 {
   DDRC = 0xFF;
