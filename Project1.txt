@@ -9,7 +9,10 @@ int main(void)
 {
   LCD lcd;
   lcd.init();
+  TCCR0 = 0x6B;
+  OCR0 = 0;
   DDRD = 0xFB;
+  DDRB = 0xFF;
   Serial.begin(2000000);
   while(1)
   {
@@ -29,18 +32,19 @@ int main(void)
     {
       
       lcd.string("LED");
-      PORTD = 0b00000100;
+      PORTD = 0b01000000;
     }
     
     if(wowe >  350)
     {
       lcd.string("BUZZER");
-      PORTD = 0b00001000;
+      OCR0 = 50;
     }
     if(PIND & 0x04 )
     {
       lcd.cmd(0x01);
-      PORTD = 0x00;
+      OCR0 = 0;
+      PORTD = 0b00000000;
     }
     }
   }
