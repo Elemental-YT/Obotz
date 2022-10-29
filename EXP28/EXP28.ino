@@ -12,18 +12,20 @@ int main(void)
   UCSRB = 0x06;
   UBRRH = 0x00;
   UBRRL = 103;
-
+  Serial.begin(20000000);
   while(1)
   {
     while(!(checkbit(UCSRA, bitn(RXC))));
     var = UDR;
-    if(var == '0')
+    if(var == 'a')
     {
       PORTB = 0x00;
+      Serial.println("OFF");
     }
-    if(var == '1')
+    if(var == 's')
     {
       PORTB = 0xFF;
+      Serial.println("On");
     }
   }
 }
