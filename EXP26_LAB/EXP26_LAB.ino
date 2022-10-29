@@ -32,13 +32,13 @@ int main(void)
     {
       
       lcd.string("LED");
-      PORTD = 0b01000000;
+      PORTD = 0b00100000;
     }
     
     if(BUZZ >  350)
     {
       lcd.string("BUZZER");
-      PORTD = 0b00100000;
+      PORTD = 0b01000000;
     }
     
     if((LED < 350) && (BUZZ < 350))

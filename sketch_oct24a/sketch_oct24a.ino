@@ -28,20 +28,20 @@ int main(void)
     Serial.println(ADCW);
     BUZZ = ADCW;
     
-    if(LED > 350)
+    if((LED > 390) && (BUZZ < 300))
     {
       
       lcd.string("LED");
       PORTD = 0b01000000;
     }
     
-    if(BUZZ >  350)
+    if((BUZZ >  390) && (LED < 300))
     {
       lcd.string("BUZZER");
       PORTD = 0b00100000;
     }
     
-    if((LED < 350) && (BUZZ < 350))
+    if((LED > 390) && (BUZZ < 390))
     {
       PORTD = 0b00000000;
     }
