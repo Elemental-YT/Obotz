@@ -46,8 +46,8 @@ int main(void)
         }
         if(bit_position>=32)
         {
-          Serial.println(keycode,HEX);
           Ir();
+          Serial.println(keycode,HEX);
           bit_position = -2;
           keycode = 0;
         }
