@@ -9,13 +9,11 @@ int on_time = 0;                              // Variable for on_time
 int off_time = 0;                             // Variable for off_time
 int bit_position = -2;                        // Variable for bit_position
 long keycode = 0;                             // Variable for keycode
+int LED;                                    // Variable for LED
+int BUZZ;                                   // Variable for Buzzer
+int power;                                  // Variable for power
 int main(void)
 {
-  LCD lcd;                                    // Creating an object class named LCD
-  lcd.init();                                 // Initializing the LCD
-  int LED;                                    // Variable for LED
-  int BUZZ;                                   // Variable for Buzzer
-  int power;                                  // Variable for power
   DDRD = 0xFF;                                // Int Output as port D
   DDRB = 0xFF;
   Serial.begin(2000000);                      // Initialize serial communication at baud rate of 2000000 bps
@@ -73,6 +71,8 @@ int main(void)
 
 void Ir()
 {
+  LCD lcd;                                    // Creating an object class named LCD
+  lcd.init();                                 // Initializing the LCD
   if(keycode == Power)
     {
       power++;
