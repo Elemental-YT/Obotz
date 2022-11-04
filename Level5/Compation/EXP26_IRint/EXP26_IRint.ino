@@ -22,7 +22,6 @@ int main(void)
   while (1)                                   // Start the Forever Loop
   {
   
-    Ir();
     ADMUX = 0x40;                             // Set A0 As the ADC conversion pin
     ADCSRA = 0xC7;                            // Start the ADC conversion
     while (checkbit(ADCSRA, bitn(ADSC)));     // Wait until the ADC conversion is done
@@ -34,7 +33,47 @@ int main(void)
     while (checkbit(ADCSRA, bitn(ADSC)));     // Wait until the ADC conversion is done
     Serial.println(ADCW);                     // Print the output onto the Serial Moniter
     BUZZ = ADCW;                              // Save the output into the Variable BUZZ
-    if(keycode == Power)
+    while(!(checkbit(PINB,bitn(2))))
+    {
+      on_time++;
+      if (on_time == 1)
+      {
+        bit_position++;
+        if(bit_position>= 1 && bit_position<= 32)
+        {
+          if(off_time > 700 )
+          {
+            keycode |= (long)1<<(32 - bit_position);
+          }
+        }
+        if(bit_position>=32)
+        {
+          Serial.println(keycode,HEX);
+          Ir();
+          bit_position = -2;
+          keycode = 0;
+        }
+      }
+    
+    off_time = 0;   
+    }
+  while((checkbit(PINB,bitn(2))))
+  {
+   off_time++;
+   on_time = 0;
+   if (off_time > 6000)
+   {
+    off_time = 0;
+    bit_position = -2;
+   }
+}
+    
+}
+}
+
+void Ir()
+{
+  if(keycode == Power)
     {
       power++;
       _delay_ms(570);
@@ -68,42 +107,5 @@ int main(void)
     lcd.cmd(0x01);                          // Clear LCD screen
     _delay_ms(570);
   }
-}
-}
-
-void Ir()
-{
-  while(!(checkbit(PINB,bitn(2))))
-    {
-      on_time++;
-      if (on_time == 1)
-      {
-        bit_position++;
-        if(bit_position>= 1 && bit_position<= 32)
-        {
-          if(off_time > 700 )
-          {
-            keycode |= (long)1<<(32 - bit_position);
-          }
-        }
-        if(bit_position>=32)
-        {
-          Serial.println(keycode,HEX);
-          bit_position = -2;
-          keycode = 0;
-        }
-      }
-    
-    off_time = 0;   
-    }
-  while((checkbit(PINB,bitn(2))))
-  {
-   off_time++;
-   on_time = 0;
-   if (off_time > 6000)
-   {
-    off_time = 0;
-    bit_position = -2;
-   }
 }
 }
