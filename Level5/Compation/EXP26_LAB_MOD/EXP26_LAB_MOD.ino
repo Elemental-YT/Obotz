@@ -26,6 +26,8 @@ void IRsensor()
   DDRD = 0xFF;                                // Int Output as port D
   DDRB = 0xFF;      
   Serial.begin(2000000);                      // Initialize serial communication at baud rate of 2000000 bps
+  while(1)
+  {
     ADMUX = 0x40;                             // Set A0 As the ADC conversion pin
     ADCSRA = 0xC7;                            // Start the ADC conversion
     while(checkbit(ADCSRA, bitn(ADSC)));      // Wait until the ADC conversion is done
@@ -57,11 +59,12 @@ void IRsensor()
       lcd.cmd(0x01);                          // Clear The LCD 
       lcd.string("Alarm On");                 // Print on the  " Alarm On "
     }
-    }
+  }
 }
 
 
-void IRremote(){
+void IRremote()
+{
   DDRB = 0xFB;                                                            // Set Port B Pin 2 As Input For The TSOP ( Thin Small Outlined Package )
   Serial.begin(2000000);                                                  // Set The Serial Moniters Baud Rate to 2000000 bps
   LCD lcd;                                                                // Create a Object Called LCD (Liquid Crystal Display)
