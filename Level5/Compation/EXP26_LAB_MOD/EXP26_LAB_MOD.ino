@@ -26,6 +26,7 @@ void IRsensor()
   DDRD = 0xFF;                                // Int Output as port D
   DDRB = 0xFF;      
   Serial.begin(2000000);                      // Initialize serial communication at baud rate of 2000000 bps
+  Serial.println("Ir Sensor Funciton was reached!");
   while(1)
   {
     ADMUX = 0x40;                             // Set A0 As the ADC conversion pin
@@ -39,21 +40,21 @@ void IRsensor()
     while(checkbit(ADCSRA, bitn(ADSC)));      // Wait until the ADC conversion is done
     Serial.println(ADCW);                     // Print the output onto the Serial Moniter
     BUZZ = ADCW;                              // Save the output into the Variable BUZZ
-    if((BUZZ <  350) && (LED >  350))         // If LED is greater than 350 and Buzz is lower Than 350
+    if((BUZZ <  300) && (LED >  300))         // If LED is greater than 350 and Buzz is lower Than 350
     {
       lcd.cmd(0x01);                          // Clear The LCD (Liquid Crystal Display)
       lcd.string("Alert! ");                  // Print on the LCD Alert!
       PORTD = 0b00100000;                     // Set Port D Pin 5 as High and everything else Low
     }
     
-    if((BUZZ >  350) && (LED <  350))         // If BUZZ is greater than 350 and LED is low than 350
+    if((BUZZ >  300) && (LED <  300))         // If BUZZ is greater than 350 and LED is low than 350
     {
       lcd.cmd(0x01);                          // Clear The LCD 
       lcd.string("Alert! ");                  // Print on the LCD  "Alert!"
       PORTD = 0b01000000;                     // Set Port D Pin 6 as High and everything else Low
     }
     
-    if((LED > 350) && (BUZZ > 350))           // If LED & BUZZ are greater than 350 
+    if((LED > 300) && (BUZZ > 300))           // If LED & BUZZ are greater than 350 
     {
       PORTD = 0b00000000;                     // Turn Set All Pins On PORT D To Low
       lcd.cmd(0x01);                          // Clear The LCD 
