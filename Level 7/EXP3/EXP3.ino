@@ -4,7 +4,7 @@
 #define setbit(x,y) (x|= y)
 #define clearbit(x,y) (x&= ~y)
 #define bitn(p) (0x01 << (p))
-int count,angle,angle1, count_angle,count_angle1
+int count,angle,count_angle,
 int main (void)
 {
   DDRD = 0xFF;
@@ -18,35 +18,33 @@ int main (void)
   _delay_ms(2000)
   while(1)
   {
-    for(int i = 1; i<= 30; i++)
-    {
-      angle++;
-      angle1++;    
-      convert();
-    }    
-    _delay_ms(1000);
-    for(int i = 1; i<= 30; i++)
-    {
-      angle--;
-      angle1--;    
-      convert();
-    }    
-    _delay_ms(1000);
-    
+    for(angle = 90; angle <= 130; angle++)
+    {    
+      convert_n();
+    }
+    for(angle = 130; angle <= 90; angle--)
+    {    
+      convert_s();
+    }
   }
 }
 
-  
-void convert()
+
+void convert_n()
 {
     count_angle = angle + 46;
-    count_angle1 = angle1 + 46;
+    delay_us(3000);
+}
+
+void convert_s()
+{
+    count_angle = angle + 46;
+    delay_us(35000);
 }
 
 void HP()
 {
-  angle = 90;
-  angle1 = 90;
+  angle = 90
 }
 
 ISR(TIMER1_COMPA_vect)
@@ -65,13 +63,4 @@ ISR(TIMER1_COMPA_vect)
   {
   count = 0
   }
-  
-  if(count <= count_angle1) 
-  {
-    setbit(PORTD, bitn(5));
-  } 
-
-  if ((count > count_angle1) && (count < 1818)) {
-    clearbit(PORTD, bitn(5));
-  }  
 }
