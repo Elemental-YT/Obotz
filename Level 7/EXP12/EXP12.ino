@@ -19,11 +19,11 @@ int main(void)
   CT();
   while(1)
   {
-    for(right_foot = 90; right_foot >= 80; right_foot--)
+    for(right_hip = 90; right_foot <= 100; right_foot++)
     {
       CT();
     }
-    for(right_foot = 80; right_foot >= 90; right_foot++)
+    for(right_hip = 100; right_foot >= 90; right_foot--)
     {
       CT();
     }

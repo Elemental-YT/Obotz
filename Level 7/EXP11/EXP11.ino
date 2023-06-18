@@ -19,12 +19,16 @@ int main(void)
   CT();
   while(1)
   {
-    for(right_foot = 90; right_foot >= 80; right_foot--)
+    for(int i; i <= 60; i++)
     {
+      right_foot++
+      left_foot--
       CT();
     }
-    for(right_foot = 80; right_foot >= 90; right_foot++)
+    for(int i; i <= 60; i++)
     {
+      right_foot--
+      left_foot++
       CT();
     }
   }
