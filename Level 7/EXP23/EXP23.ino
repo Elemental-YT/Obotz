@@ -23,9 +23,46 @@ int main(void)
     if (a == 1)
     {
       _delay_ms(3000);
-      for(int c = 1;)
+      for(int c = 1; c <= 40; c++)
+      {
+        right_hand++;
+        left_hand--;
+        CT();
+      }
+      _delay_ms(10);
+      for(int c = 1; c <= 90; c++)
+      {
+        right_hip++;
+        left_hip--;
+        CT();
+      }
+      _delay_ms(10);
+      for(int c = 1; c <= 50; c++)
+      {
+        right_foot++;
+        left_foot--;
+        CT();
+      }
+      delay_ms(10)
+      a = 2;
     }
+    for(int c = 1; c <= 20; c++)
+      {
+        right_hand--;
+        left_hand++;
+        right_foot--;
+        left_foot++;
+        CTS();
+      }
     
+    for(int c = 1; c <= 20; c++)
+      {
+        right_hand++;
+        left_hand--;
+        right_foot++;
+        left_foot--;
+        CTS();
+      }
    
 
     HP();
@@ -62,7 +99,17 @@ void CT()
   count_angle6 = neck + 46;
 }
 
-
+void CTS()
+{
+  count_angle = right_hip + 46;
+  count_angle1 = right_foot + 46;
+  count_angle2 = right_hand + 46;
+  count_angle3 = left_hip + 46;
+  count_angle4 = left_foot + 46;
+  count_angle5 = left_hand + 46;
+  count_angle6 = neck + 46;
+  _delay_ms(3500);
+}
 
 ISR(TIMER1_COMPA_vect)
 {
