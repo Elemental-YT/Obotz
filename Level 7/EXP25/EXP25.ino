@@ -4,11 +4,17 @@
 #define setbit(x,y) (x|= y)
 #define clearbit(x,y) (x&= ~y)
 #define bitn(p) (0x01 << (p))
+
+char data;
+int a = 1;
 int count = 0;
 int right_hip,right_foot,right_hand,left_hip,left_foot,left_hand,neck,count_angle,count_angle1,count_angle2,count_angle3,count_angle4,count_angle5,count_angle6;
 int main(void)
 {
-  DDRD = 0xFF;
+  DDRD = 0xFC;
+  DDRB = 0xFF;
+  UCSR0A = 0x00;
+  UCSR0B = 0x10
   TCNT1 = 0x00;
   OCR1A = 21;
   TCCR1A = 0x00;
@@ -85,8 +91,99 @@ int main(void)
   }
 }
 
+void TF()
+{
+    for(right_foot = 90; right_foot >= 80; right_foot--)
+    {
+      CT();
+    }
+    for(right_foot = 80; right_foot >= 90; right_foot++)
+    {
+      CT();
+    }
 
+}
 
+void LS()
+{
+  for(right_hip = 90; right_foot <= 100; right_foot++)
+    {
+      CT();
+    }
+    for(right_hip = 100; right_foot >= 90; right_foot--)
+    {
+      CT();
+    }
+}
+void HIPC()
+{
+      for(int i; i <= 20; i++)
+    {
+      right_hip++
+      left_hip--
+      CT();
+    }
+    for(int i; i <= 40; i++)
+    {
+      right_hip--
+      left_hip++
+      CT();
+    }
+    for(int i; i <= 20; i++)
+    {
+      right_hip++
+      left_hip--
+      CT();
+    }
+}
+
+void HANDC()
+{
+  for(right_hand = 40; right_hand <= 70; right_foot++)
+    {
+      CT();
+    }
+   
+    for(left_hand = 40; left_hand <= 70; left_foot++)
+    {
+      CT();
+    }
+}
+
+void RMAR()
+{
+  for(int c = 1; c <= 40; c++)
+    {
+      right_foot++;
+      left_hand--;
+      right_hand--;
+      CT();
+    }
+    
+    for(int c = 1; c <= 40; c++)
+    {
+      right_foot--;
+      left_hand++;
+      right_hand++;
+      CT();
+    }
+    
+    for(int c = 1; c <= 40; c++)
+    {
+      left_foot++;
+      left_hand--;
+      right_hand--;
+      CT();
+    }
+
+    for(int c = 1; c <= 40; c++)
+    {
+      left_foot--;
+      left_hand++;
+      right_hand++;
+      CT();
+    }
+}
 
 void HP()
 {
@@ -185,3 +282,7 @@ ISR(TIMER1_COMPA_vect)
     clearbit(PORTD, bitn(0));
   }
 }
+
+
+
+

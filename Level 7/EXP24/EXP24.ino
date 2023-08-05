@@ -5,10 +5,15 @@
 #define clearbit(x,y) (x&= ~y)
 #define bitn(p) (0x01 << (p))
 int count = 0;
+int period = 200;
 int right_hip,right_foot,right_hand,left_hip,left_foot,left_hand,neck,count_angle,count_angle1,count_angle2,count_angle3,count_angle4,count_angle5,count_angle6;
 int main(void)
 {
   DDRD = 0xFF;
+  DDRB = 0xFF;
+  DDRC = 0xFF;
+  PORTB = 0xFF;
+  PORTC = 0x00;
   TCNT1 = 0x00;
   OCR1A = 21;
   TCCR1A = 0x00;
@@ -22,12 +27,12 @@ int main(void)
     for(right_foot = 90; right_foot <= 130; right_foot++)
     {
       CT();
-    
+      UA();
     }
     for(left_foot = 90; left_foot <= 100; left_foot++)
     {
       CT();
-   
+      UA();
     }
     for(int c = 1; c <= 40; c++)
     { 
@@ -36,19 +41,19 @@ int main(void)
       left_hand--;
       right_hand--;
       CT();
- 
+      UA();
     }
     
     for(left_foot = 100; left_foot <= 90; left_foot--)
     {
       CT();
-
+      UA();
     }
 
     for(right_foot = 130; right_foot <= 90; right_foot--)
     {
       CT();
-
+      UA();
     }
      for(int c = 1; c <= 40; c++)
     { 
@@ -57,12 +62,12 @@ int main(void)
       left_hand++;
       right_hand++;
       CT();
-
+      UA();
     }
     for(left_foot = 90; left_foot <= 50; left_foot--)
     {
       CT();
-
+      UA();
     }
     for(right_foot = 90; right_foot <= 80; right_foot--)
     {
@@ -76,17 +81,35 @@ int main(void)
       left_hand++;
       right_hand++;
       CT();
-
+      UA();
     }
 
     HP();
-
+    UA();
     
   }
 }
 
 
 
+void UA()
+{
+  PORTB = 0b00000001;
+  PORTC = 0b11111011;
+  _delay_us(period);
+  PORTB = 0b00000010;
+  PORTC = 0b11111101;
+  _delay_us(period);
+  PORTB = 0b00000100;
+  PORTC = 0b11100000;
+  _delay_us(period); 
+  PORTB = 0b00001000;
+  PORTC = 0b11111101;
+  _delay_us(period);
+  PORTB = 0b00100000;
+  PORTC = 0b11111101;
+  _delay_us(period);      
+}
 
 void HP()
 {
@@ -185,3 +208,7 @@ ISR(TIMER1_COMPA_vect)
     clearbit(PORTD, bitn(0));
   }
 }
+
+
+
+
