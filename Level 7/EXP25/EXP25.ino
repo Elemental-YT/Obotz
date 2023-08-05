@@ -14,7 +14,9 @@ int main(void)
   DDRD = 0xFC;
   DDRB = 0xFF;
   UCSR0A = 0x00;
-  UCSR0B = 0x10
+  UCSR0B = 0x10;
+  UCSR0C = 0x06;
+  UBRR0H =
   TCNT1 = 0x00;
   OCR1A = 21;
   TCCR1A = 0x00;
