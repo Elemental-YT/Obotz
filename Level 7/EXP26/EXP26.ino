@@ -71,69 +71,16 @@ int main(void)
   }
 }
 
-void FWD()
+void EX1()
 {
-  for(right_foot = 90; right_foot <= 130; right_foot++)
-    {
-      CT();
-    
-    }
-    for(left_foot = 90; left_foot <= 100; left_foot++)
-    {
-      CT();
-   
-    }
-    for(int c = 1; c <= 40; c++)
-    { 
-      left_hip++;
-      right_hip++;
-      left_hand--;
-      right_hand--;
-      CT();
- 
-    }
-    
-    for(left_foot = 100; left_foot <= 90; left_foot--)
-    {
-      CT();
-
-    }
-
-    for(right_foot = 130; right_foot <= 90; right_foot--)
-    {
-      CT();
-
-    }
-     for(int c = 1; c <= 40; c++)
-    { 
-      left_hip--;
-      right_hip--;
-      left_hand++;
-      right_hand++;
-      CT();
-
-    }
-    for(left_foot = 90; left_foot <= 50; left_foot--)
-    {
-      CT();
-
-    }
-    for(right_foot = 90; right_foot <= 80; right_foot--)
-    {
-      CT();
-    }
-
-    for(int c = 1; c <= 40; c++)
-    { 
-      left_hip--;
-      right_hip--;
-      left_hand++;
-      right_hand++;
-      CT();
-
-    }
-
-    HP();
+  right_hand = 140;
+  left_hand = 40;
+  CT();
+  _delay_ms(100)
+  right_hand = 40;
+  left_hand = 140;
+  CT();
+  _delay_ms(100);
 }
 
 void BWD()
