@@ -95,7 +95,7 @@ void HP()
   right_hand = 40;
   left_hip = 90;
   left_foot = 90;
-  left_hand = 140;
+  left_hand = 40;
   neck = 90;
 }
 

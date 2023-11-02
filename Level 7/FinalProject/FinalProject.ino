@@ -5,6 +5,7 @@
 #define clearbit(x,y) (x&= ~y)
 #define bitn(p) (0x01 << (p))
 int count = 0;
+int q;
 int right_hip,right_foot,right_hand,left_hip,left_foot,left_hand,neck,count_angle,count_angle1,count_angle2,count_angle3,count_angle4,count_angle5,count_angle6;
 int main(void)
 {
@@ -19,30 +20,56 @@ int main(void)
   CT();
   while(1)
   {
-    for(right_foot = 90; right_foot <= 110; right_foot++)
-    {
-      CT();
-    }
-    for(left_foot = 90; left_foot <= 50; left_foot--)
-    {
-      CT();
-    }
-    for(right_foot = 110; right_foot <= 90; right_foot--)
-    {
-      CT();
-    }
-    for(left_foot = 50; left_foot <= 90; left_foot++)
-    {
-      CT();
-    }
     
-   
+   for(right_hip; right_hip <= 120; right_hip++)
+   {
+     
+     right_hip = right_hip + 20;
+     CT();
+     _delay_ms(500);
+     right_hip = 90;
+   }
+ {
+     for(left_hip; left_hip <= 120; left_hip++)
+   {
+     left_hip = left_hip + 20;
+     CT();
+     _delay_ms(500);
+     left_hip = 90;
+   }
+    
+  for(int w; w <= 2; w++)
+  {
+    right_foot = 120;
+    _delay_ms(200);
+    left_foot = 120;
+    right_foot = 90;
+    left_hand = 120;
+    _delay_ms(150);
+    left_foot = 90;
+    left_hand = 0;
+    _delay_ms(600);
+    left_foot = 120;
+    _delay_ms(200);
+    right_foot = 120;
+    left_foot = 90;
+    right_hand = 120;
+    _delay_ms(150);
+    right_foot = 90;
+    right_hand = 0;
 
-    HP();
-    
+  }
+
+  for (int a; a <= 10; a++) {
+   left_hand = 120;
+   right_hand = 0;
+   _delay_ms(600);
+   right_hand = 120;
+   left_hand = 0;
+  }
+  HP();
   }
 }
-
 
 
 
@@ -54,9 +81,8 @@ void HP()
   right_hand = 40;
   left_hip = 90;
   left_foot = 90;
-  left_hand = 140;
+  left_hand = 40;
   neck = 90;
-  CT();
 }
 
 
@@ -145,7 +171,3 @@ ISR(TIMER1_COMPA_vect)
     clearbit(PORTD, bitn(0));
   }
 }
-
-
-
-
