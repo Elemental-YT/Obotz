@@ -1,0 +1,15 @@
+#include<avr/io.h>
+#include<util/delay.h>
+#include<avr/interrupt.h>
+#define key1 0x1CE7823F
+#define key2 0x1CE7823F
+#define key3 0x1CE7823F
+long keycode = 0;
+int timervalue;
+int bitposition = 0;
+int var = 0;
+int main (void)
+{
+  DDRB = 0x00;
+  DDRD = 0xFF;
+  
