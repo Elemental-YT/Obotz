@@ -4,6 +4,8 @@
 #include<util/delay.h>                              // Include Delay library
 #define checkbit(x,y) ((x) & (y))                   // Create checkbit macro 
 #define bitn(p) (0x01 << (p))                       // Create bitn macro
+#define setbit(x,y) (x|=y)                          // Create Setbit Macro
+#define clearbit(x,y) (x&=~y)                       // Create Clearbit Macro
 int main(void)                                      // Begin Code 
 {
     int x;                                          // Create Local Variable X
@@ -27,29 +29,21 @@ int main(void)                                      // Begin Code
         Serial.print(" Y-axis: ");                  // Print Y-Axis On the same line Where X-Axis is printed 
         Serial.println(y);                          // Print Variable Y onto the right of Y-Axis then create new line 
 
-        if(y<100)                                   // If Y is less then 100 
-        {
-            PORTD = 0b01010000;                     // Set Port B. Pin 5 and Port B. Pin 7. to High ( Positive ) to move Bwd And Set Everything to Low ( Negative )
+        if (y > 800)                                // If Y is greater than 800 ( Up ) 
+        { 
+            setbit(PORTD,bitn(5));                  // Set PORTD Pin 5 to High ( Positive ) 
+            clearbit(PORTD,bitn(6));                // Set PORTD Pin 6 To Low ( Negative )
         }
 
-        if (y > 800)                                // If Y is greater than 800
+        if(y< 100)                                  // If X is less than 100 ( Down )
         { 
-            PORTD=0b10100000;                       // Set Port B. Pin 6 and Port B. Pin 8. to High ( Positive ) to move Fwd And Set Everything to Low ( Negative )
-        }
-
-        if(x< 100)                                  // If X is less than 100
-        { 
-            PORTD=0b10010000;                      // Set Port B. Pin 5 and Port B. Pin 8 To High ( Positive ) to move Left? And Set Everything to Low ( Negative )
+            setbit(PORTD,bitn(6));                  // Set PORTD Pin 6 to High ( Positive ) 
+            clearbit(PORTD,bitn(5));                // Set PORTD Pin 5 To Low ( Negative )
         } 
 
-        if(x> 800)                                // If X is greater than 800
-        { 
-            PORTD=0b011000000;                    // Set Port B. Pin 6 and Port B. Pin 7 to High ( Positive ) to move Right? And Set Everything to Low ( Negative )
-        }
-
-        else                                      // If Joystick at Middle 
+        else                                        // Else
         {
-          PORTD=0x00;                            // Set Everything to Low ( Negative ) 
+          PORTD = 0x00;                             // Set PORTD to Low ( Negative )
         }
     }
 }
