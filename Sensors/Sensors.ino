@@ -11,7 +11,8 @@ int main(void)                                      // Begin code
   Serial.begin (2000000);                           // Start serial moniter and set BAUD RATE to 2000000
   int Data;                                         // Create Variable Val to store the IR Sensor's Value.
   int Recab = 100;                                  // Create Variable Recab to store Recalibration data
-  DDRD = 0xFB 
+  DDRD = 0xFB;                                      // Set PORTD Pin 2 to Input Rest as Output
+  TCCR0 = 0x03; 
   while(1)                                        // Begin Infinite Loop
     {                            
        // This section is to fetch the IR sensor's Value
