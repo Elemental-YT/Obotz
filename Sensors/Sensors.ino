@@ -21,7 +21,8 @@ int main(void)                                      // Begin code
        while (checkbit(ADCSRA, bitn(ADSC)));        // Wait until the Analog to Digial Conversion is Complete
        Data = ADCW;                                  // Set Port A Pin 0's Digital Value to Variable VAL
        Serial.print("Sensor's Val: ");               // Print "Sensor's Val: " on to the Serial Moniter
-       Serial.println(Data);                          // Print Variable val's Value on to the Serial Moniter
+       Serial.println(Data);                          // Print Variable Data's Value on to the Serial Moniter
+       // This next section is all the IF statments
        if(checkbit(PORTD, bitn(2)))                   // If Switch 1 is pressed
         {
           Recab = Data;                               // Set Recab's Value to Data's Value
@@ -44,30 +45,33 @@ int main(void)                                      // Begin code
 }
 
 
-
+// Function CONVERT section
 void convert()    // Function "Convert"
 {
+  for(int i = 0; i<20; i++)         // Repeat 20 times
+  {
   while(!(PIND & 0x04)|| (PIND & 0x08))
   {
-    int tem = (5 + angle/10)
-    int tem2 = (5 = angle2/10)
-    TCNT0 = 0;
-    while (var < 200)
+    int tem = (5 + angle/10)  // Create Variable tem and set it's value to angle divided by 10 then add 5
+    int tem2 = (5 = angle2/10) // Create Variable tem2 and set it's value to angle2 divided by 10 then add 5
+    TCNT0 = 0;        // Reset timer
+    while (var < 200)       // Every 20 milliseconds run this code ( I think? )
     {
-      if(TCNT0 == 25)
+      if(TCNT0 == 25)       // If the Timer reaches 25 ticks ( 100 milliseconds )
       {
-        var++;
-        TCNT0 = 0;
+        var++;              // Increase Var by 1
+        TCNT0 = 0;          // Reset timer
       }
-      if(var == tem)
+      if(var == tem)        // If var equals tem
       {
-        PORTB = 0x00;
+        PORTB = 0x00;       // Turn off PORTB
       }
     }
-    if (var == 200)
+    if (var == 200)         // If var equals 200
     {
-      PORTB = 0xFB;
-      var = 0;
+      PORTB = 0xFB;         // Turn on PORTB exept for PIN 2
+      var = 0;              // Set var to 0
     }
   }
+ } 
 }
