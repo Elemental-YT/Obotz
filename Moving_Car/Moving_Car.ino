@@ -6,6 +6,7 @@
 #define bitn(p) (0x01 << (p))                       // Create bitn macro
 #define setbit(x,y) (x|=y)                          // Create Setbit Macro
 #define clearbit(x,y) (x&=~y)                       // Create Clearbit Macro
+int angle,count,count_angle;
 int main(void)                                      // Begin Code 
 {
     int x;                                          // Create Local Variable X
@@ -28,17 +29,17 @@ int main(void)                                      // Begin Code
         Serial.print(x);                            // Print Variable X to the right of X-axis onto the serial moniter
         Serial.print(" Y-axis: ");                  // Print Y-Axis On the same line Where X-Axis is printed 
         Serial.println(y);                          // Print Variable Y onto the right of Y-Axis then create new line 
-
         if (y > 800)                                // If Y is greater than 800 ( Up ) 
         { 
-            setbit(PORTD,bitn(5));                  // Set PORTD Pin 5 to High ( Positive ) 
-            clearbit(PORTD,bitn(6));                // Set PORTD Pin 6 To Low ( Negative )
+           setbit(PORTD, bitn(5));
+           clearbit(PORTD, bitn(6));
         }
 
-        if(y< 100)                                  // If X is less than 100 ( Down )
+        if(y< 100)                                  // If X is less than 100 ( Down )               
         { 
-            setbit(PORTD,bitn(6));                  // Set PORTD Pin 6 to High ( Positive ) 
-            clearbit(PORTD,bitn(5));                // Set PORTD Pin 5 To Low ( Negative )
+            setbit(PORTD, bitn(6));
+            clearbit(PORTD, bitn(5));
+
         } 
 
         else                                        // Else

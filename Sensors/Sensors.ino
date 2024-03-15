@@ -20,16 +20,24 @@ int main(void)                                      // Begin code
        ADCSRA = 0xC7;                               // Begin the Analog to Digital Conversion
        while (checkbit(ADCSRA, bitn(ADSC)));        // Wait until the Analog to Digial Conversion is Complete
        Data = ADCW;                                  // Set Port A Pin 0's Digital Value to Variable VAL
-       Serial.print("Sensor's Val: ");               // Print "Sensor's Val: " on to the Serial Moniter
-       Serial.println(Data);                          // Print Variable Data's Value on to the Serial Moniter
+       
        // This next section is all the IF statments
        if(checkbit(PORTD, bitn(2)))                   // If Switch 1 is pressed
         {
+          Serial.println("Entered Recab State");
           Recab = Data;                               // Set Recab's Value to Data's Value
+          Serial.print("Recab's Val: ");               // Print "Sensor's Val: " on to the Serial Moniter
+          Serial.println(Recab);                          // Print Variable Data's Value on to the Serial Moniter
         }
-
+        
+        if(checkbit(PORTD, bitn(3)))                   // If Switch 2 is pressed
+        {
+          Serial.print("Sensor's Val: ");               // Print "Sensor's Val: " on to the Serial Moniter
+          Serial.println(Data);                          // Print Variable Data's Value on to the Serial Moniter
+        }
         if(Data = Recab)                              // If Data equals Recab           
         {
+          Serial.println("Entered Data State");
           angle = 180;                                // Set Angle to 180 ( Start the Servo Moter to start Function Alert)
           angle2 = 0;                                 // Set Angle1 to 0; ( Retract the Servo Moter to start Function Quiet)
           convert();                                  // Head over to the convert function
@@ -37,6 +45,7 @@ int main(void)                                      // Begin code
 
         else
         {
+          Serial.println("Entered Else State");
           angle2 = 180;                                // Set Angle to 180 ( Start the Servo Moter to start Function Quiet)
           angle = 0;                                   // Set Angle1 to 0; ( Retract the Servo Moter to start Function Alert)
           convert();                                  // Head over to the convert function
@@ -52,8 +61,8 @@ void convert()    // Function "Convert"
   {
   while(!(PIND & 0x04)|| (PIND & 0x08))
   {
-    int tem = (5 + angle/10)  // Create Variable tem and set it's value to angle divided by 10 then add 5
-    int tem2 = (5 = angle2/10) // Create Variable tem2 and set it's value to angle2 divided by 10 then add 5
+    int tem = (5 + angle/10);  // Create Variable tem and set it's value to angle divided by 10 then add 5
+    int tem2 = (5 + angle2/10); // Create Variable tem2 and set it's value to angle2 divided by 10 then add 5
     TCNT0 = 0;        // Reset timer
     while (var < 200)       // Every 20 milliseconds run this code ( I think? )
     {

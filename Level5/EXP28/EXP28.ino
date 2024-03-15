@@ -15,11 +15,11 @@ int main(void)
   {
     while(!(checkbit(UCSRA, bitn(RXC))));
     input = UDR;
-    if(var == '0')
+    if(input == '0')
     {
       PORTB = 0x00;
     }
-    if(var == '1')
+    if(input == '1')
     {
       PORTB = 0xFF;
     }
